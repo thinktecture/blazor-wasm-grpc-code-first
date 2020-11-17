@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'BlazorWasmGrpcCodeFirst' ">
+    <ExternalConsole>true</ExternalConsole>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.33.1" />
+    <PackageReference Include="protobuf-net.Grpc" Version="1.0.136" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\BlazorWasmGrpcCodeFirst.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
