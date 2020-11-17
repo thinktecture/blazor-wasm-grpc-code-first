@@ -40,7 +40,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
             return _mapper.Map<Shared.DTO.ConferenceDetails>(conferenceDetails);
         }
 
-        public async Task<IEnumerable<Shared.DTO.ConferenceOverview>> ListConferencesAsync()
+        public async Task<IEnumerable<ConferenceOverview>> ListConferencesAsync()
         {
             var conferences = await _conferencesDbContext.Conferences.ToListAsync();
             var confs = _mapper.Map<IEnumerable<Shared.DTO.ConferenceOverview>>(conferences);
