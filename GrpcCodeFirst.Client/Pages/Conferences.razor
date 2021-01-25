@@ -1,0 +1,40 @@
+@page "/conferences"
+
+@using GrpcCodeFirst.Shared.DTO
+
+@inject HttpClient _httpClient
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
+    <MudText Typo="Typo.h3" GutterBottom="true">Conferences</MudText>
+    <MudText Class="mb-8">Loading data from a server via an API...</MudText>
+    @if (_conferences == null)
+    {
+        <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+    }
+    else
+    {
+        <MudTable Items="_conferences" Hover="true" Elevation="3">
+            <HeaderContent>
+                <MudTh Style="color: white; background-color: #ff584f">Title</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Title">@context.Title</MudTd>
+            </RowTemplate>
+        </MudTable>
+    }
+</MudContainer>
+
+@code {
+    private List<ConferenceOverview> _conferences;
+    private string _searchString;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadConferences();
+    }
+
+    private async Task LoadConferences()
+    {
+        _conferences = await _httpClient.GetFromJsonAsync<List<ConferenceOverview>>("api/conferences");
+    }
+}

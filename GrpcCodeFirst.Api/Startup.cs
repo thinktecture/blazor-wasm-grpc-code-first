@@ -41,9 +41,13 @@ namespace GrpcCodeFirst.Api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlazorWASMGrpcCodeFirst v1"));
+                app.UseWebAssemblyDebugging();
             }
 
             app.UseHttpsRedirection();
+
+            app.UseBlazorFrameworkFiles();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -52,6 +56,7 @@ namespace GrpcCodeFirst.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToFile("index.html");
             });
         }
     }
