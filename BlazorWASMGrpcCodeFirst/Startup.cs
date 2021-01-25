@@ -1,9 +1,13 @@
+using AutoMapper;
+using GrpcCodeFirst.Api.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace GrpcCodeFirst.Api
 {
@@ -18,6 +22,11 @@ namespace GrpcCodeFirst.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddDbContext<ConferencesDbContext>(
+                options => options.UseInMemoryDatabase(databaseName: "BlazorWasmGrpcCodeFirst"));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

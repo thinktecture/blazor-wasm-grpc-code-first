@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 
 namespace GrpcCodeFirst.Api.Controllers
 {
-    [Authorize("api")]
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
