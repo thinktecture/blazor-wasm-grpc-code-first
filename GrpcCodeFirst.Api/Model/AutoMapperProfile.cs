@@ -11,9 +11,7 @@ namespace GrpcCodeFirst.Api.Model
             CreateMap<ConferenceOverview, Conference>();
 
             CreateMap<Conference, ConferenceDetails>();
-            CreateMap<Conference, ConferenceOverview>();
             CreateMap<ConferenceDetails, Conference>();
-            CreateMap<ConferenceOverview, Conference>();
         }
     }
 }
