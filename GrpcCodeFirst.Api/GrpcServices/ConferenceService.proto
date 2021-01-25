@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcCodeFirst.Api.GrpcServices.Interfaces";
+
+service ConferenceService {
+  rpc ListConferences (ListConferencesRequest) returns (ListConferencesResponse);
+}
+
+message ListConferencesRequest {
+}
+
+message ListConferencesResponse {
+  repeated ConferenceOverview Conferences = 1;
+}
+
+message ConferenceOverview {
+  string ID = 1;
+  string Title = 2;
+}

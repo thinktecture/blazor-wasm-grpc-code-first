@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcCodeFirst.Shared", "Grp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcCodeFirst.Client", "GrpcCodeFirst.Client\GrpcCodeFirst.Client.csproj", "{3EE155A4-EBAF-450F-86AF-C4180F27BDE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcCodeFirst.ConsoleClient", "GrpcCodeFirst.ConsoleClient\GrpcCodeFirst.ConsoleClient.csproj", "{7DAF776F-87F4-43DD-B47C-C880D843DCCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3EE155A4-EBAF-450F-86AF-C4180F27BDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EE155A4-EBAF-450F-86AF-C4180F27BDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EE155A4-EBAF-450F-86AF-C4180F27BDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

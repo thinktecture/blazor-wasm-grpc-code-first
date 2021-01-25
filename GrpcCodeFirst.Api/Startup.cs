@@ -1,4 +1,5 @@
 using AutoMapper;
+using GrpcCodeFirst.Api.GrpcServices;
 using GrpcCodeFirst.Api.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,8 @@ namespace GrpcCodeFirst.Api
 
             services.AddDbContext<ConferencesDbContext>(
                 options => options.UseInMemoryDatabase(databaseName: "BlazorWasmGrpcCodeFirst"));
+
+            services.AddGrpc();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -55,6 +58,7 @@ namespace GrpcCodeFirst.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<ConferenceService>();
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
