@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using MudBlazor.Services;
 using MudBlazor;
+using GrpcCodeFirst.Client.Services;
 
 namespace GrpcCodeFirst.Client
 {
@@ -16,6 +17,8 @@ namespace GrpcCodeFirst.Client
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            builder.Services.AddScoped<IConferenceServiceClient, ConferenceServiceClient>();
 
             builder.Services.AddMudBlazorDialog();
             builder.Services.AddMudBlazorSnackbar();

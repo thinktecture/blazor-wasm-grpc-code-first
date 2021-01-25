@@ -1,8 +1,9 @@
 @page "/conferences"
 
 @using GrpcCodeFirst.Shared.DTO
+@using GrpcCodeFirst.Client.Services
 
-@inject HttpClient _httpClient
+@inject IConferenceServiceClient _conferencesClient
 
 <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
     <MudText Typo="Typo.h3" GutterBottom="true">Conferences</MudText>
@@ -35,6 +36,6 @@
 
     private async Task LoadConferences()
     {
-        _conferences = await _httpClient.GetFromJsonAsync<List<ConferenceOverview>>("api/conferences");
+        _conferences = await _conferencesClient.ListConferencesAsync();
     }
 }
