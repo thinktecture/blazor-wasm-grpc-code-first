@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcCodeFirst.API", "GrpcCodeFirst.API.csproj", "{70D83862-A72F-43FB-8162-67BC7BAC8FEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcCodeFirst.Api", "GrpcCodeFirst.Api\GrpcCodeFirst.Api.csproj", "{70D83862-A72F-43FB-8162-67BC7BAC8FEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcCodeFirst.Shared", "..\GrpcCodeFirst.Shared\GrpcCodeFirst.Shared.csproj", "{989F7505-9DD4-4B7A-898A-A4FF6DC8A88A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcCodeFirst.Shared", "GrpcCodeFirst.Shared\GrpcCodeFirst.Shared.csproj", "{989F7505-9DD4-4B7A-898A-A4FF6DC8A88A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcCodeFirst.Client", "..\GrpcCodeFirst.Client\GrpcCodeFirst.Client.csproj", "{3EE155A4-EBAF-450F-86AF-C4180F27BDE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcCodeFirst.Client", "GrpcCodeFirst.Client\GrpcCodeFirst.Client.csproj", "{3EE155A4-EBAF-450F-86AF-C4180F27BDE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
