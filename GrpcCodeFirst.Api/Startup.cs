@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ProtoBuf.Grpc.Server;
 using System;
+using System.IO.Compression;
 
 namespace GrpcCodeFirst.Api
 {
@@ -29,6 +31,7 @@ namespace GrpcCodeFirst.Api
                 options => options.UseInMemoryDatabase(databaseName: "BlazorWasmGrpcCodeFirst"));
 
             services.AddGrpc();
+            services.AddCodeFirstGrpc(config => { config.ResponseCompressionLevel = CompressionLevel.Optimal; });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -58,7 +61,9 @@ namespace GrpcCodeFirst.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<ConferenceServiceContractFirst>();
                 endpoints.MapGrpcService<ConferenceService>();
+
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
