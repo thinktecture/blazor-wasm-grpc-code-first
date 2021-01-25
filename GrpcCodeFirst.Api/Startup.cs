@@ -57,12 +57,14 @@ namespace GrpcCodeFirst.Api
 
             app.UseRouting();
 
+            app.UseGrpcWeb();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<ConferenceServiceContractFirst>();
-                endpoints.MapGrpcService<ConferenceService>();
+                endpoints.MapGrpcService<ConferenceService>().EnableGrpcWeb();
 
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
