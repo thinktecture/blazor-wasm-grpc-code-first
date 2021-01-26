@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace GrpcCodeFirst.Client.Services
 {
-    public class ConferenceServiceClient : IConferenceServiceClient
+    public class ConferenceServiceHttpClient : IConferenceServiceClient
     {
         private HttpClient _httpClient;
         private string _conferencesUrl;
 
         public event EventHandler ConferenceListChanged;
 
-        public ConferenceServiceClient(HttpClient httpClient)
+        public ConferenceServiceHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
             _conferencesUrl = "api/conferences/";
