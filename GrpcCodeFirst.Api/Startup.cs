@@ -68,7 +68,7 @@ namespace GrpcCodeFirst.Api
 
                 endpoints.MapGrpcService<ConferenceServiceContractFirst>();
                 endpoints.MapGrpcService<ConferenceService>().EnableGrpcWeb();
-                endpoints.MapGrpcService<TimeService>();
+                endpoints.MapGrpcService<TimeService>().EnableGrpcWeb();
 
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
