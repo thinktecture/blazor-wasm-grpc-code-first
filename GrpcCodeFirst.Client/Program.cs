@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using MudBlazor.Services;
 using MudBlazor;
 using GrpcCodeFirst.Client.Services;
+using Grpc.Net.Client;
+using Grpc.Net.Client.Web;
 
 namespace GrpcCodeFirst.Client
 {
@@ -18,7 +20,15 @@ namespace GrpcCodeFirst.Client
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddScoped<IConferenceServiceClient, ConferenceServiceClient>();
+            builder.Services.AddScoped<GrpcChannel>(services =>
+            {
+                var grpcWebHandler = new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler());
+                var channel = GrpcChannel.ForAddress(builder.HostEnvironment.BaseAddress, new GrpcChannelOptions { HttpHandler = grpcWebHandler });
+
+                return channel;
+            });
+
+            builder.Services.AddScoped<IConferenceServiceClient, ConferenceServiceGrpcClient>();
 
             builder.Services.AddMudBlazorDialog();
             builder.Services.AddMudBlazorSnackbar();
