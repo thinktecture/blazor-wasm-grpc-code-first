@@ -32,6 +32,7 @@ namespace GrpcCodeFirst.Api
 
             services.AddGrpc();
             services.AddCodeFirstGrpc(config => { config.ResponseCompressionLevel = CompressionLevel.Optimal; });
+            services.AddCodeFirstGrpcReflection();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -61,6 +62,8 @@ namespace GrpcCodeFirst.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapCodeFirstGrpcReflectionService();
+
                 endpoints.MapGrpcService<ConferenceServiceContractFirst>();
                 endpoints.MapGrpcService<ConferenceService>();
 
