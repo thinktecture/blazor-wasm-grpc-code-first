@@ -1,0 +1,49 @@
+﻿@page "/time"
+
+@using Grpc.Core
+@using Grpc.Net.Client
+@using ProtoBuf.Grpc.Client;
+@using ProtoBuf.Grpc;
+@using System.Threading
+@using GrpcCodeFirst.Shared.Interfaces
+
+@inject GrpcChannel _channel
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-16">
+    <MudText Typo="Typo.h3" GutterBottom="true">Time from Server</MudText>
+    <MudText Typo="Typo.h5">@currentTimeFromServer</MudText>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="StartTime" Disabled="@(cts != null)">Start</MudButton>
+    <MudButton Variant="Variant.Filled" Color="Color.Secondary" @onclick="StopTime" Disabled="@(cts == null)">Stop</MudButton>
+</MudContainer>
+
+@code {
+    private DateTime currentTimeFromServer;
+    private CancellationTokenSource cts;
+
+    private async Task StartTime()
+    {
+        var clock = _channel.CreateGrpcService<ITimeService>();
+        cts = new CancellationTokenSource();
+        var options = new CallOptions(cancellationToken: cts.Token);
+
+        Console.WriteLine($"Current local time: {DateTime.UtcNow}");
+
+        try
+        {
+            await foreach (var time in clock.SubscribeAsync(new CallContext(options)))
+            {
+                currentTimeFromServer = time.Time;
+                StateHasChanged();
+                Console.WriteLine($"Time from server: {time.Time}");
+            }
+        }
+        catch (RpcException) { }
+        catch (OperationCanceledException) { }
+    }
+
+    private void StopTime()
+    {
+        cts?.Cancel();
+        cts = null;
+    }
+}

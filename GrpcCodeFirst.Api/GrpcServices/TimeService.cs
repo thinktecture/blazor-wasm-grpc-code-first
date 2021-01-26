@@ -26,7 +26,7 @@ namespace GrpcCodeFirst.Api.GrpcServices
                     break;
                 }
 
-                yield return new TimeResult { Time = DateTime.UtcNow };
+                yield return new TimeResult { Time = DateTime.Now };
             }
         }
     }
