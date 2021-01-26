@@ -58,6 +58,8 @@ namespace GrpcCodeFirst.Api
 
             app.UseRouting();
 
+            app.UseGrpcWeb();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -65,7 +67,7 @@ namespace GrpcCodeFirst.Api
                 endpoints.MapCodeFirstGrpcReflectionService();
 
                 endpoints.MapGrpcService<ConferenceServiceContractFirst>();
-                endpoints.MapGrpcService<ConferenceService>();
+                endpoints.MapGrpcService<ConferenceService>().EnableGrpcWeb();
                 endpoints.MapGrpcService<TimeService>();
 
                 endpoints.MapControllers();
