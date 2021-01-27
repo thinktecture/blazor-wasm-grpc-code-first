@@ -34,6 +34,7 @@
 
     private async Task LoadConferences()
     {
-        _conferences = await _httpClient.GetFromJsonAsync<List<ConferenceOverview>>("api/conferences");
+        _conferences = await _httpClient.GetFromJsonAsync<
+            List<ConferenceOverview>>("api/conferences");
     }
 }
