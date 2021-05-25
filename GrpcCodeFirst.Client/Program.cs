@@ -20,9 +20,7 @@ namespace GrpcCodeFirst.Client
 
             builder.Services.AddScoped<IConferenceServiceClient, ConferenceServiceClient>();
 
-            builder.Services.AddMudBlazorDialog();
-            builder.Services.AddMudBlazorSnackbar();
-            builder.Services.AddMudBlazorResizeListener();
+            builder.Services.AddMudServices();
 
             await builder.Build().RunAsync();
         }
