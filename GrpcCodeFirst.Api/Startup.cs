@@ -64,11 +64,11 @@ namespace GrpcCodeFirst.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapCodeFirstGrpcReflectionService();
-
                 endpoints.MapGrpcService<ConferenceServiceContractFirst>();
                 endpoints.MapGrpcService<ConferenceService>().EnableGrpcWeb();
                 endpoints.MapGrpcService<TimeService>().EnableGrpcWeb();
+
+                endpoints.MapCodeFirstGrpcReflectionService();
 
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
