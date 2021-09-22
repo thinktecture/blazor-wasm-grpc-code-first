@@ -8,7 +8,7 @@ namespace GrpcCodeFirst.Api.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }

@@ -11,17 +11,11 @@ namespace GrpcCodeFirst.Client.Services
 {
     public class ConferenceServiceGrpcClient : IConferenceServiceClient
     {
-        private IConferenceService _serviceClient;
-
-        public event EventHandler ConferenceListChanged;
+        private readonly IConferenceService _serviceClient;
 
         public ConferenceServiceGrpcClient(GrpcChannel channel)
         {
             _serviceClient = channel.CreateGrpcService<IConferenceService>();
-        }
-
-        public async Task InitAsync()
-        {
         }
 
         public async Task<List<ConferenceOverview>> ListConferencesAsync()
@@ -33,7 +27,7 @@ namespace GrpcCodeFirst.Client.Services
 
         public async Task<ConferenceDetails> GetConferenceDetailsAsync(Guid id)
         {
-            var result = await _serviceClient.GetConferenceDetailsAsync(new ConferenceDetailsRequest { ID = id });
+            var result = await _serviceClient.GetConferenceDetailsAsync(new ConferenceDetailsRequest { Id = id });
 
             return result;
         }

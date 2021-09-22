@@ -9,10 +9,8 @@ namespace GrpcCodeFirst.Client.Services
 {
     public class ConferenceServiceHttpClient : IConferenceServiceClient
     {
-        private HttpClient _httpClient;
-        private string _conferencesUrl;
-
-        public event EventHandler ConferenceListChanged;
+        private readonly HttpClient _httpClient;
+        private readonly string _conferencesUrl;
 
         public ConferenceServiceHttpClient(HttpClient httpClient)
         {

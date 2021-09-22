@@ -3,18 +3,17 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace GrpcCodeFirst.Api
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args)
+        private static IWebHost BuildWebHost(string[] args)
         {
             var host = WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(new ConfigurationBuilder()
@@ -23,12 +22,8 @@ namespace GrpcCodeFirst.Api
                 .UseStartup<Startup>()
                 .Build();
 
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<ConferencesDbContext>();
-                DataGenerator.Initialize(services);
-            }
+            using var scope = host.Services.CreateScope();
+            DataGenerator.Initialize(scope.ServiceProvider);
 
             return host;
         }

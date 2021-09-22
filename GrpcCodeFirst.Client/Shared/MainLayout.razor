@@ -23,7 +23,7 @@
 </MudLayout>
 
 @code {
-    MudTheme _myTheme = new MudTheme()
+    private readonly MudTheme _myTheme = new MudTheme()
     {
         Palette = new Palette()
         {
@@ -33,9 +33,9 @@
         }
     };
 
-    bool _drawerOpen = true;
+    private bool _drawerOpen = true;
 
-    void DrawerToggle()
+    private void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }

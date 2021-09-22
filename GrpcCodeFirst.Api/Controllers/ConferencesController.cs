@@ -5,7 +5,6 @@ using AutoMapper;
 using GrpcCodeFirst.Api.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace GrpcCodeFirst.Api.Controllers
 {
@@ -14,15 +13,12 @@ namespace GrpcCodeFirst.Api.Controllers
     [Produces("application/json")]
     public class ConferencesController : ControllerBase
     {
-        private readonly ILogger<ConferencesController> _logger;
         private readonly ConferencesDbContext _conferencesDbContext;
         private readonly IMapper _mapper;
 
-        public ConferencesController(ILogger<ConferencesController> logger,
-            ConferencesDbContext conferencesDbContext,
+        public ConferencesController(ConferencesDbContext conferencesDbContext,
             IMapper mapper)
         {
-            _logger = logger;
             _conferencesDbContext = conferencesDbContext;
             _mapper = mapper;
         }
@@ -61,7 +57,7 @@ namespace GrpcCodeFirst.Api.Controllers
 
             await _conferencesDbContext.SaveChangesAsync();
 
-            return CreatedAtAction("Get", new { id = conference.ID }, _mapper.Map<Shared.DTO.ConferenceDetails>(conf));
+            return CreatedAtAction("Get", new { id = conference.Id }, _mapper.Map<Shared.DTO.ConferenceDetails>(conf));
         }
     }
 }

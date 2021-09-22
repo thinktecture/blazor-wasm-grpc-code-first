@@ -4,11 +4,11 @@ using System;
 
 namespace GrpcCodeFirst.ConsoleClient
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Type a key!");
+            Console.WriteLine("Type a key...");
             Console.ReadKey();
 
             Console.WriteLine("Calling gRPC service...");

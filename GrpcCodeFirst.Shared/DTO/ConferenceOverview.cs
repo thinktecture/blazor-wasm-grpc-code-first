@@ -7,7 +7,7 @@ namespace GrpcCodeFirst.Shared.DTO
     public class ConferenceOverview
     {
         [DataMember(Order = 1)]
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         [DataMember(Order = 2)]
         public string Title { get; set; }

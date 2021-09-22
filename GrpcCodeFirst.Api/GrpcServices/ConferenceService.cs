@@ -30,7 +30,7 @@ namespace GrpcCodeFirst.Api.GrpcServices
 
         public async Task<ConferenceDetails> GetConferenceDetailsAsync(ConferenceDetailsRequest request)
         {
-            var conferenceDetails = await _conferencesDbContext.Conferences.FindAsync(request.ID);
+            var conferenceDetails = await _conferencesDbContext.Conferences.FindAsync(request.Id);
 
             if (conferenceDetails == null)
             {

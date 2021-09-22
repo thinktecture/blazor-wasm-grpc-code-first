@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GrpcCodeFirst.Api.Model
 {
-    public class DataGenerator
+    public static class DataGenerator
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
@@ -21,7 +21,7 @@ namespace GrpcCodeFirst.Api.Model
                 context.Conferences.AddRange(
                     new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "BASTA! Spring 2020",
                         City = "Frankfurt am Main",
                         Country = "Germany",
@@ -31,7 +31,7 @@ namespace GrpcCodeFirst.Api.Model
                     },
                     new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "IJS 2020 London",
                         City = "London",
                         Country = "England",
@@ -41,7 +41,7 @@ namespace GrpcCodeFirst.Api.Model
                     }, 
                     new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "Global Azure Bootcamp 2020",
                         City = "Hamburg",
                         Country = "Germany",
@@ -51,7 +51,7 @@ namespace GrpcCodeFirst.Api.Model
                     },
                     new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "DevOpsCon 2020 Berlin",
                         City = "Berlin",
                         Country = "Germany",
@@ -61,7 +61,7 @@ namespace GrpcCodeFirst.Api.Model
                     },
                     new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "BASTA! 2020",
                         City = "Mainz",
                         Country = "Germany",
@@ -71,7 +71,7 @@ namespace GrpcCodeFirst.Api.Model
                     },
                     new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "IJS 2020 NYC",
                         City = "New York City",
                         Country = "USA",
@@ -86,7 +86,7 @@ namespace GrpcCodeFirst.Api.Model
                 {
                     var conf = new Conference
                     {
-                        ID = Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Title = "Conf "+ i,
                         City = "City " + i,
                         Country = "Germany",
