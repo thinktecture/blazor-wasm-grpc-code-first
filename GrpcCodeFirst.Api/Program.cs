@@ -20,12 +20,12 @@ namespace GrpcCodeFirst.Api
                 .UseConfiguration(new ConfigurationBuilder()
                     .AddCommandLine(args)
                     .Build())
-                .ConfigureKestrel(options =>
-                {
-                    // all endpoints without TLS
-                    options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2); // gRPC
-                    options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http1AndHttp2); // Web & gRPC-Web
-                })
+                //.ConfigureKestrel(options =>
+                //{
+                //    // needed for macOS: all endpoints without TLS 
+                //    options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2); // gRPC
+                //    options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http1AndHttp2); // Web & gRPC-Web
+                //})
                 .UseStartup<Startup>()
                 .Build();
 
