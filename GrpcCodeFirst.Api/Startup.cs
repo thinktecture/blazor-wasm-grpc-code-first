@@ -32,7 +32,7 @@ namespace GrpcCodeFirst.Api
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ConferencesDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -64,6 +64,8 @@ namespace GrpcCodeFirst.Api
                 endpoints.MapControllers();
                 endpoints.MapFallbackToFile("index.html");
             });
+
+            DataGenerator.Initialize(dbContext);
         }
     }
 }
