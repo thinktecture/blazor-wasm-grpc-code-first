@@ -6,6 +6,8 @@
 		<AssemblyName>GrpcCodeFirst.Api</AssemblyName>
 		<RootNamespace>GrpcCodeFirst.Api</RootNamespace>
 		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<UserSecretsId>ac3426a4-d2c1-4ad1-bb4a-7ea9f4faee62</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(RunConfiguration)' == 'BlazorWASMGrpcCodeFirst' " />
@@ -27,6 +29,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
 		<PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
 		<PackageReference Include="protobuf-net.Grpc.AspNetCore.Reflection" Version="1.0.152" />
