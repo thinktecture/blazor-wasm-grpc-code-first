@@ -1,7 +1,5 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
-    "ASPNETCORE_TEST_CONTENTROOT_GrpcCodeFirst_Api": "C:\\home\\site\\wwwroot\\"
-  }
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated"  }
 }

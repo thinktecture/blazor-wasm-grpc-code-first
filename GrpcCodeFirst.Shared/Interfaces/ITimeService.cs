@@ -1,21 +1,13 @@
-﻿using ProtoBuf;
+﻿using GrpcCodeFirst.Shared.DTO;
 using ProtoBuf.Grpc;
-using System;
+using ProtoBuf.Grpc.Configuration;
 using System.Collections.Generic;
-using System.ServiceModel;
 
 namespace GrpcCodeFirst.Shared.Interfaces
 {
-    [ServiceContract]
+    [Service]
     public interface ITimeService
     {
         IAsyncEnumerable<TimeResult> SubscribeAsync(CallContext context = default);
-    }
-
-    [ProtoContract]
-    public class TimeResult
-    {
-        [ProtoMember(1, DataFormat = DataFormat.WellKnown)]
-        public DateTime Time { get; set; }
     }
 }

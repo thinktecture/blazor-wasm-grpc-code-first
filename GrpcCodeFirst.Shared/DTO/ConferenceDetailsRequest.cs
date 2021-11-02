@@ -1,12 +1,12 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using ProtoBuf;
+using System;
 
 namespace GrpcCodeFirst.Shared.DTO
 {
-    [DataContract]
+    [ProtoContract]
     public class ConferenceDetailsRequest
     {
-        [DataMember(Order = 1)]
+        [ProtoMember(1)]
         public Guid Id { get; set; }
     }
 }
