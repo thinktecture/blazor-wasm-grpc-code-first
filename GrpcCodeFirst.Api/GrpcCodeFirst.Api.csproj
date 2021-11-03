@@ -3,14 +3,9 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-		<AssemblyName>GrpcCodeFirst.Api</AssemblyName>
-		<RootNamespace>GrpcCodeFirst.Api</RootNamespace>
-		<PreserveCompilationContext>true</PreserveCompilationContext>
-		<UserSecretsId>ac3426a4-d2c1-4ad1-bb4a-7ea9f4faee62</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(RunConfiguration)' == 'BlazorWASMGrpcCodeFirst' " />
 	<ItemGroup>
 		<None Remove="GrpcServices\ConferenceService.proto" />
 	</ItemGroup>
