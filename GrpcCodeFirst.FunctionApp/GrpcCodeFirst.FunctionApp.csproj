@@ -29,11 +29,11 @@
 		<ProjectReference Include="..\GrpcCodeFirst.Api\GrpcCodeFirst.Api.csproj" />
 	</ItemGroup>
 
-	<Target Name="CopyDepsFiles" AfterTargets="CopyFilesToOutputDirectory">
+	<Target Name="CopyDepsFiles" BeforeTargets="AfterPublish">
 		<ItemGroup>
-			<DepsFilePaths Include="..\GrpcCodeFirst.Api\bin\$(Configuration)\$(TargetFramework)\*.deps.json" />
+			<DepsFilePaths Include="..\GrpcCodeFirst.Api\bin\$(Configuration)\net5.0\*.deps.json" />
 		</ItemGroup>
-		<Copy SourceFiles="@(DepsFilePaths)" DestinationFolder="$(OutDir)" />
+		<Copy SourceFiles="@(DepsFilePaths)" DestinationFolder="$(PublishUrl)" ContinueOnError="true" />
 	</Target>
 	
 	<ItemGroup>
