@@ -55,7 +55,7 @@ jobs:
           azcliversion: 2.20.0
           inlineScript: |
             echo "Installing containerapp extension"
-            az provider register --namespace Microsoft.Web
+
             az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.1.12-py2.py3-none-any.whl --yes
             echo "Starting Deploying"
             az containerapp update -n grpccodefirst -g cw-blazor -i confcw.azurecr.io/grpccodefirst:${{ github.sha }} --registry-login-server confcw.azurecr.io --registry-username  ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }} --debug
