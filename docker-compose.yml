@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}grpccodefirst
     build:
       context: .
-      dockerfile: GrpcCodeFirst.Api/Dockerfile
+      dockerfile: Dockerfile

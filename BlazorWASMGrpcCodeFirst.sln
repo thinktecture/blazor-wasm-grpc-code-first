@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcCodeFirst.Client", "Grp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcCodeFirst.ConsoleClient", "GrpcCodeFirst.ConsoleClient\GrpcCodeFirst.ConsoleClient.csproj", "{7DAF776F-87F4-43DD-B47C-C880D843DCCB}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3D7F8948-7616-40A3-9212-3666DD855261}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DAF776F-87F4-43DD-B47C-C880D843DCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D7F8948-7616-40A3-9212-3666DD855261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D7F8948-7616-40A3-9212-3666DD855261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D7F8948-7616-40A3-9212-3666DD855261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D7F8948-7616-40A3-9212-3666DD855261}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
