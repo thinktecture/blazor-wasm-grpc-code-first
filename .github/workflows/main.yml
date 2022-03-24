@@ -46,6 +46,7 @@ jobs:
 
     - name: 'Create Container App'
       uses: Azure/cli@v1
+      continue-on-error: true
       with:
         inlineScript: |
           echo "Installing containerapp extension"
