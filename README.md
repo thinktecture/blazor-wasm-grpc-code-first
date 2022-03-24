@@ -6,4 +6,4 @@ With Blazor WebAssembly, developers can write C# code for SPAs in the browser an
 
 In fact, you gain the good parts we already had many years ago with WCF - now for the ubiquitous & open web.
 
-(Trigger)
+((Trigger)
