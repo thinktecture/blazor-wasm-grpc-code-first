@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using Google.Protobuf.Collections;
 
 namespace GrpcCodeFirst.Api.Model
@@ -15,7 +16,7 @@ namespace GrpcCodeFirst.Api.Model
             CreateMap<Conference, GrpcServices.Interfaces.ConferenceOverview>();
             CreateMap<GrpcServices.Interfaces.ConferenceOverview, Conference>();
 
-            ForAllPropertyMaps(
+            this.Internal().ForAllPropertyMaps(
                 map => map.DestinationType.IsGenericType && map.DestinationType.GetGenericTypeDefinition() == typeof(RepeatedField<>),
                 (map, options) => options.UseDestinationValue()
             );
