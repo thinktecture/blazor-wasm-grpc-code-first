@@ -52,7 +52,7 @@ jobs:
           echo "Installing containerapp extension"
           az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
           echo "Starting Creating"
-          az containerapp create -n grpccodefirst -g ${{ secrets.RESOURCE_GROUP }} --environment cw-blazor-grpc --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/grpccodefirst:${{ github.sha }} --target-port 80 --ingress 'external' --query configuration.ingress.fqdn --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username  ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
+          az containerapp create -n grpccodefirst -g ${{ secrets.RESOURCE_GROUP }} --environment ${{ secrets.ACA_ENV }} --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/grpccodefirst:${{ github.sha }} --target-port 80 --ingress 'external' --query configuration.ingress.fqdn --registry-login-server ${{ secrets.REGISTRY_LOGIN_SERVER }} --registry-username  ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }}
 
     - name: 'Deploy Container App'
       uses: Azure/cli@v1
