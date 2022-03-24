@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="protobuf-net.Grpc" Version="1.0.152" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.9.0" />
   </ItemGroup>
 
 </Project>

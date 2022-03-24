@@ -1,4 +1,5 @@
-﻿using GrpcCodeFirst.Shared.Interfaces;
+﻿using GrpcCodeFirst.Shared.DTO;
+using GrpcCodeFirst.Shared.Interfaces;
 using ProtoBuf.Grpc;
 using System;
 using System.Collections.Generic;

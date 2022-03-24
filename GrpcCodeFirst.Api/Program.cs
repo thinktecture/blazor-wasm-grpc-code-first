@@ -1,9 +1,5 @@
-using GrpcCodeFirst.Api.Model;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace GrpcCodeFirst.Api
 {
@@ -11,28 +7,20 @@ namespace GrpcCodeFirst.Api
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = CreateHostBuilder(args).Build();
+            host.Run();
         }
 
-        private static IWebHost BuildWebHost(string[] args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            var host = WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(new ConfigurationBuilder()
-                    .AddCommandLine(args)
-                    .Build())
-                //.ConfigureKestrel(options =>
-                //{
-                //    // needed for macOS: all endpoints without TLS 
-                //    options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2); // gRPC
-                //    options.ListenLocalhost(5001, o => o.Protocols = HttpProtocols.Http1AndHttp2); // Web & gRPC-Web
-                //})
-                .UseStartup<Startup>()
-                .Build();
+            var hb = Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
 
-            using var scope = host.Services.CreateScope();
-            DataGenerator.Initialize(scope.ServiceProvider);
+            return hb;
 
-            return host;
         }
     }
 }

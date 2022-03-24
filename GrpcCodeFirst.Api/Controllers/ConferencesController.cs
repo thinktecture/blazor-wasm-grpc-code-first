@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using GrpcCodeFirst.Shared.DTO;
 using GrpcCodeFirst.Api.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace GrpcCodeFirst.Api.Controllers
 {
@@ -24,15 +26,15 @@ namespace GrpcCodeFirst.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Shared.DTO.ConferenceOverview>> Get()
+        public async Task<IEnumerable<ConferenceOverview>> Get()
         {
             var conferences = await _conferencesDbContext.Conferences.ToListAsync();
 
-            return _mapper.Map<IEnumerable<Shared.DTO.ConferenceOverview>>(conferences);
+            return _mapper.Map<IEnumerable<ConferenceOverview>>(conferences);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Shared.DTO.ConferenceDetails>> Get(string id)
+        public async Task<ActionResult<ConferenceDetails>> Get(string id)
         {
             var conferenceDetails = await _conferencesDbContext.Conferences.FindAsync(Guid.Parse(id));
 
@@ -41,11 +43,11 @@ namespace GrpcCodeFirst.Api.Controllers
                 return NotFound();
             }
 
-            return _mapper.Map<Shared.DTO.ConferenceDetails>(conferenceDetails);
+            return _mapper.Map<ConferenceDetails>(conferenceDetails);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Shared.DTO.ConferenceDetails>> PostConference(Shared.DTO.ConferenceDetails conference)
+        public async Task<ActionResult<ConferenceDetails>> PostConference(ConferenceDetails conference)
         {
             if (!ModelState.IsValid)
             {
@@ -57,7 +59,7 @@ namespace GrpcCodeFirst.Api.Controllers
 
             await _conferencesDbContext.SaveChangesAsync();
 
-            return CreatedAtAction("Get", new { id = conference.Id }, _mapper.Map<Shared.DTO.ConferenceDetails>(conf));
+            return CreatedAtAction("Get", new { id = conference.Id }, _mapper.Map<ConferenceDetails>(conf));
         }
     }
 }

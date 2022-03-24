@@ -1,11 +1,11 @@
 ﻿using GrpcCodeFirst.Shared.DTO;
+using ProtoBuf.Grpc.Configuration;
 using System.Collections.Generic;
-using System.ServiceModel;
 using System.Threading.Tasks;
 
 namespace GrpcCodeFirst.Shared.Interfaces
 {
-    [ServiceContract]
+    [Service]
     public interface IConferenceService
     {
         Task<IEnumerable<ConferenceOverview>> ListConferencesAsync();
