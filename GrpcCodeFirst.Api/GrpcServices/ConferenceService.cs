@@ -19,13 +19,12 @@ namespace GrpcCodeFirst.Api.GrpcServices
             _mapper = mapper;
         }
 
-        public async Task<ConferenceDetails> AddNewConferenceAsync(ConferenceDetails conference)
+        public async Task<IEnumerable<ConferenceOverview>> ListConferencesAsync()
         {
-            var conf = _mapper.Map<Model.Conference>(conference);
-            _conferencesDbContext.Conferences.Add(conf);
-            await _conferencesDbContext.SaveChangesAsync();
+            var conferences = await _conferencesDbContext.Conferences.ToListAsync();
+            var confs = _mapper.Map<IEnumerable<ConferenceOverview>>(conferences);
 
-            return _mapper.Map<Shared.DTO.ConferenceDetails>(conf);
+            return confs;
         }
 
         public async Task<ConferenceDetails> GetConferenceDetailsAsync(ConferenceDetailsRequest request)
@@ -37,15 +36,16 @@ namespace GrpcCodeFirst.Api.GrpcServices
                 return null;
             }
 
-            return _mapper.Map<Shared.DTO.ConferenceDetails>(conferenceDetails);
+            return _mapper.Map<ConferenceDetails>(conferenceDetails);
         }
 
-        public async Task<IEnumerable<ConferenceOverview>> ListConferencesAsync()
+        public async Task<ConferenceDetails> AddNewConferenceAsync(ConferenceDetails conference)
         {
-            var conferences = await _conferencesDbContext.Conferences.ToListAsync();
-            var confs = _mapper.Map<IEnumerable<Shared.DTO.ConferenceOverview>>(conferences);
+            var conf = _mapper.Map<Model.Conference>(conference);
+            _conferencesDbContext.Conferences.Add(conf);
+            await _conferencesDbContext.SaveChangesAsync();
 
-            return confs;
+            return _mapper.Map<ConferenceDetails>(conf);
         }
     }
 }
