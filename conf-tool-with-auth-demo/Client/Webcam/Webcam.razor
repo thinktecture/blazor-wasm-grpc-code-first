@@ -1,0 +1,47 @@
+﻿@page "/webcam"
+
+@inject IWebcamService _webcam
+
+<h1>Webcam</h1>
+
+<div class="camera">
+    <video id="@_options.VideoId">
+    </video>
+</div>
+
+<div class="output">
+    <img id="@_options.PhotoId"
+         alt="">
+</div>
+
+<div>
+    <button class="btn btn-primary" @onclick="StartVideoAsync">Start video</button>
+    <button class="btn btn-primary" @onclick="TakePictureAsync">Take picture</button>
+</div>
+
+<canvas id="@_options.CanvasId">
+</canvas>
+
+@code {
+    private readonly WebcamOptions _options = new WebcamOptions()
+    {
+        CanvasId = "canvas",
+        VideoId = "video",
+        PhotoId = "photo"
+    };
+
+    protected override void OnInitialized()
+    {
+        _options.Width = 320;
+    }
+
+    private async Task StartVideoAsync()
+    {
+        await _webcam.StartVideoAsync(_options);
+    }
+
+    private async Task TakePictureAsync()
+    {
+        await _webcam.TakePictureAsync();
+    }
+}

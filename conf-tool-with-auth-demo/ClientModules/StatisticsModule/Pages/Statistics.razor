@@ -1,0 +1,74 @@
+﻿@page "/statistics"
+
+@using Microsoft.JSInterop
+@using System.Text.Json
+@using ConfTool.ClientModules.Statistics.Services
+
+@implements IDisposable
+
+@inject IJSRuntime _js
+@inject StatisticsServiceClient _statisticsService
+
+<h3>Statistics</h3>
+
+<style>
+    wc-pie-chart {
+        font-family: Arial;
+        color: #212121;
+        background-color: #f5f5f5;
+        margin: 20px;
+        width: 600px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <wc-pie-chart data-values='@_data'>
+        </wc-pie-chart>
+    </div>
+    <div class="row">
+        <label>Current country (from .NET):&nbsp;</label>
+        <label><b>@_selectedCountry</b></label>
+    </div>
+</div>
+
+@code {
+    private string _data;
+    private string _selectedCountry;
+
+    private DotNetObjectReference<Statistics> _objectReference;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await _statisticsService.GetStatisticsAsync();
+        _data = JsonSerializer.Serialize(result);
+    }
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _objectReference = DotNetObjectReference.Create(this);
+
+            await _js.InvokeVoidAsync("interop.charts.register", _objectReference);
+            await _js.InvokeVoidAsync("interop.charts.init");
+        }
+    }
+
+    [JSInvokable]
+    public void SetSelectedCountry(JsonElement selectedData)
+    {
+        _selectedCountry = selectedData.GetProperty("name").ToString();
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+
+        if (_objectReference != null)
+        {
+            _objectReference.Dispose();
+        }
+    }
+}

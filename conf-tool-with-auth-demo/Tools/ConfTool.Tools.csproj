@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\ConfTool.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="protobuf-net.Grpc.Reflection" Version="1.0.169" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,51 @@
+﻿@page "/counter"
+
+@using Grpc.Core
+@using Grpc.Net.Client
+@using Microsoft.AspNetCore.Authorization
+@using System.Threading
+
+@using Count
+
+@inject GrpcChannel _channel
+
+@attribute [Authorize]
+
+<h1>Streaming Counter</h1>
+
+<p>Current value: @_currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount" disabled="@(_cts != null)">Start</button>
+<button class="btn btn-primary" @onclick="StopCount" disabled="@(_cts == null)">Stop</button>
+
+@code {
+    private int _currentCount = 0;
+    private CancellationTokenSource _cts;
+
+    private async Task IncrementCount()
+    {
+        _cts = new CancellationTokenSource();
+
+        var client = new Count.Counter.CounterClient(_channel);
+        var call = client.StartCounter(new CounterRequest() { Start = _currentCount }, cancellationToken: _cts.Token);
+
+        try
+        {
+            await foreach (var message in call.ResponseStream.ReadAllAsync())
+            {
+                _currentCount = message.Count;
+                StateHasChanged();
+            }
+        }
+        catch (RpcException ex) when (ex.StatusCode == StatusCode.Cancelled)
+        {
+            // Ignore exception from cancellation
+        }
+    }
+
+    private void StopCount()
+    {
+        _cts?.Cancel();
+        _cts = null;
+    }
+}

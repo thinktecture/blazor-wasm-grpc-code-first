@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Protobuf_ToolsOs Condition="'$([MSBuild]::IsOsPlatform(OSX))'">macosx</Protobuf_ToolsOs>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.4.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.9.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="6.0.0-preview.4.21253.7" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.45.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.20.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.45.0">
+    <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="protobuf-net.Grpc" Version="1.0.169" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Protobuf Include="Protos\GreeterService.proto" GrpcServices="Both" />
+    <Protobuf Include="Protos\CounterService.proto" GrpcServices="Both" />
+    <Protobuf Include="Protos\ConferencesService.proto" GrpcServices="Both" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>    
+</Project>

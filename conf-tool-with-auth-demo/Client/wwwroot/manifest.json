@@ -1,0 +1,17 @@
+﻿{
+  "short_name": "ConfTool",
+  "name": "Conferences Tool",
+  "description": "Franconia dolor ipsum sit amet, Ziebeleskäs fei sacht, bassd scho Halbs Hemmerd Debb Schbodzn Gwaaf. Oggs vo der Fleischbrüggn Boodwanna do schau her groom Abodeng? Grawallschachdl Fleischkäichla Schloudfeecher nächerds! Bridschn, bugglhadd Schdumhogger Barragn Fraa glei fängsd der anne Misdn. Fiesl mal ned dran rum adee Schdrom bassd scho.",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#1294e0",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "darkslategrey"
+}

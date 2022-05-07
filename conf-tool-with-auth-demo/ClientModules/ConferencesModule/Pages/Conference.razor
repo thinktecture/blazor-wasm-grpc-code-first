@@ -1,0 +1,68 @@
+﻿@page "/conferences/{mode}"
+@page "/conferences/{mode}/{id:guid}"
+
+@using Microsoft.AspNetCore.Components.Forms
+
+@using Blazored.FluentValidation
+@using Blazored.Typeahead
+
+@using ConfTool.ClientModules.Conferences.Components
+
+<ConferenceHeader Mode="@Mode" />
+
+<EditForm Model="_conferenceDetails" OnValidSubmit="SaveConference">
+    <DataAnnotationsValidator />
+    <FluentValidationValidator />
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <InputText @bind-disabled="@_isShow" @bind-Value="_conferenceDetails.Title" class="form-control" id="title" placeholder="Title of the conference"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input disabled="@_isShow" type="text" @bind-value="_conferenceDetails.City" class="form-control" id="city" placeholder="Location">
+    </div>
+    <div class="form-group">
+        <label for="country">Country</label>
+        @if (Mode == ConferenceComponentDisplayModes.Show)
+        {
+            <input disabled="@_isShow" type="text" @bind-value="_conferenceDetails.Country" class="form-control" id="country" placeholder="Location">
+        }
+        else
+        {
+            <!--
+            <InputSelect @bind-Value="_conferenceDetails.Country" class="form-control" id="country">
+                @foreach (string country in _countries)
+                    {
+                    <option value="@country">@country</option>
+                    }
+            </InputSelect>
+            -->
+            <BlazoredTypeahead SearchMethod="FilterCountries"
+                               @bind-Value="_conferenceDetails.Country"
+                               EnableDropDown="true">
+                <SelectedTemplate Context="country">
+                    @country
+                </SelectedTemplate>
+                <ResultTemplate Context="country">
+                    @country
+                </ResultTemplate>
+            </BlazoredTypeahead>
+        }
+    </div>
+    <div class="form-group">
+        <label for="datefrom">From</label>
+        <InputDate @bind-Value="_conferenceDetails.DateFrom" disabled="@_isShow" class="form-control" id="datefrom" placeholder="Start date"></InputDate>
+    </div>
+    <div class="form-group">
+        <label for="dateto">To</label>
+        <InputDate @bind-Value="_conferenceDetails.DateTo" disabled="@_isShow" class="form-control" id="dateto" placeholder="End date"></InputDate>
+    </div>
+
+    <ValidationSummary />
+
+    @if (Mode != ConferenceComponentDisplayModes.Show)
+    {
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+</EditForm>

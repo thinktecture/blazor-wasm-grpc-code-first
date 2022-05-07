@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+package conference;
+
+service Conferences {
+  rpc ListConferences (ListConferencesRequest) returns (ListConferencesResponse);
+}
+
+message ListConferencesRequest {
+}
+
+message ListConferencesResponse {
+  repeated ConferenceOverview Conferences = 1;
+}
+
+message ConferenceOverview {
+    string ID = 1;
+    string Title = 2;
+}

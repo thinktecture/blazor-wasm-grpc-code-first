@@ -1,0 +1,4 @@
+cd ../..
+dotnet publish -c Debug
+cd Infrastructure/pwa
+workbox generateSW workbox-config.js

@@ -1,0 +1,89 @@
+﻿@page "/conferences"
+
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Authorization
+
+@using Blazored.Toast.Services
+
+@using ConfTool.ClientModules.Conferences.Services
+@using ConfTool.Shared.DTO
+
+@attribute [Authorize]
+
+@implements IDisposable
+
+@inject NavigationManager _navigation
+@inject IConferencesServiceClient _conferencesService
+@inject IToastService _toastService
+
+<h1>Conferences</h1>
+
+<button @onclick="AddConference">Add Conference</button>
+<br />
+<br />
+
+@if (_conferences == null)
+{
+    <p><em>Loading conferences...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <Virtualize Items="@_conferences" Context="conf">
+                <tr @onclick="() => LoadDetails(conf.ID)" @key="conf.ID">
+                    <td>@conf.Title</td>
+                </tr>
+            </Virtualize>
+        </tbody>
+    </table>
+}
+@code {
+    public List<ConferenceOverview> _conferences;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _conferencesService.ConferenceListChanged += HandleConferenceUpdates;
+
+        await _conferencesService.InitAsync();
+
+        _conferences = await ListConferences();
+    }
+
+    private async void HandleConferenceUpdates(object sender, EventArgs args)
+    {
+        _toastService.ShowInfo("Conference list changed.");
+        Console.WriteLine("###SignalR - NEW conference added!");
+
+        _conferences = await ListConferences();
+
+        StateHasChanged();
+    }
+
+    private async Task<List<ConferenceOverview>> ListConferences()
+    {
+        return await _conferencesService.ListConferencesAsync();
+    }
+
+    private void LoadDetails(Guid id)
+    {
+        _navigation.NavigateTo("conferences/show/" + id);
+    }
+
+    private void AddConference(MouseEventArgs e)
+    {
+        _navigation.NavigateTo("conferences/new");
+    }
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+
+        _conferencesService.ConferenceListChanged -= HandleConferenceUpdates;
+    }
+}
