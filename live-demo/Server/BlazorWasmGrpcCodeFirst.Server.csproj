@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.4" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.45.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -16,8 +17,17 @@
 		<ProjectReference Include="..\Shared\BlazorWasmGrpcCodeFirst.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+    <Protobuf Include="GrpcServices\WeatherService.proto" GrpcServices="Server" />
+</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Swashbuckle.AspNetCore" />
+	  <None Remove="Grpc.AspNetCore" />
+	  <None Remove="GrpcServices\" />
+	  <None Remove="GrpcServices\WeatherService.proto" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="GrpcServices\" />
 	</ItemGroup>
 </Project>

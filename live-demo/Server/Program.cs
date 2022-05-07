@@ -1,6 +1,15 @@
-﻿using Microsoft.AspNetCore.ResponseCompression;
+﻿using BlazorWasmGrpcCodeFirst.Server.GrpcServices;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // Setup a HTTP/2 endpoint without TLS.
+    options.ListenLocalhost(5000, o => o.Protocols =
+        HttpProtocols.Http2);
+});
 
 // Add services to the container.
 
@@ -9,6 +18,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddGrpc();
 
 var app = builder.Build();
 
@@ -34,9 +45,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-
 app.MapRazorPages();
 app.MapControllers();
+
+app.MapGrpcService<WeatherService>();
+
 app.MapFallbackToFile("index.html");
 
 app.Run();
