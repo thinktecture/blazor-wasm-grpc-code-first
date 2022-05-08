@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddGrpc();
 builder.Services.AddCodeFirstGrpc();
+builder.Services.AddCodeFirstGrpcReflection();
 
 var app = builder.Build();
 
@@ -57,6 +58,8 @@ app.MapControllers();
 
 app.MapGrpcService<WeatherService>();
 app.MapGrpcService<WeatherForecastService>().EnableGrpcWeb();
+
+app.MapCodeFirstGrpcReflectionService();
 
 app.MapFallbackToFile("index.html");
 
