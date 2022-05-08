@@ -11,6 +11,7 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
 		<PackageReference Include="Grpc.AspNetCore" Version="2.45.0" />
 		<PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
+		<PackageReference Include="Grpc.AspNetCore.Web" Version="2.45.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,6 +29,7 @@
 	  <None Remove="GrpcServices\" />
 	  <None Remove="GrpcServices\WeatherService.proto" />
 	  <None Remove="protobuf-net.Grpc.AspNetCore" />
+	  <None Remove="Grpc.AspNetCore.Web" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="GrpcServices\" />

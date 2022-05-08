@@ -5,12 +5,15 @@ using ProtoBuf.Grpc.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#if DEBUG
 builder.WebHost.ConfigureKestrel(options =>
 {
-    // Setup a HTTP/2 endpoint without TLS.
-    options.ListenLocalhost(5000, o => o.Protocols =
+    options.ListenLocalhost(5050, o => o.Protocols =
         HttpProtocols.Http2);
+    options.ListenLocalhost(5051, o => o.Protocols =
+        HttpProtocols.Http1AndHttp2);
 });
+#endif
 
 // Add services to the container.
 
@@ -47,11 +50,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseGrpcWeb();
+
 app.MapRazorPages();
 app.MapControllers();
 
 app.MapGrpcService<WeatherService>();
-app.MapGrpcService<WeatherForecastService>();
+app.MapGrpcService<WeatherForecastService>().EnableGrpcWeb();
 
 app.MapFallbackToFile("index.html");
 

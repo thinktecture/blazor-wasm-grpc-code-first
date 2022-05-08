@@ -10,12 +10,12 @@ Console.ReadKey();
 var channel = GrpcChannel.ForAddress("http://localhost:5000");
 
 var client = new WeatherServiceClient(channel);
-var response = client.GetForecast(new WeatherForecastRequest());
+var response = await client.GetForecastAsync(new WeatherForecastRequest());
 
 Console.WriteLine("Contract-first - {0}", response.WeatherForecasts.Count);
 
 var clientProxy = channel.CreateGrpcService<IWeatherForecastService>();
-var weatherForecasts = clientProxy.Get();
+var weatherForecasts = await clientProxy.GetAsync();
 
 Console.WriteLine("Code-first - {0}", weatherForecasts.Count());
 

@@ -13,9 +13,9 @@ namespace BlazorWasmGrpcCodeFirst.Client.Services
             _httpClient = httpClient;
 		}
 
-        public async Task<ICollection<WeatherForecast>> GetWeatherForecastAsync()
+        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
         {
-            return await _httpClient.GetFromJsonAsync<ICollection<WeatherForecast>>("WeatherForecast");
+            return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        public override Task<WeatherForecastResponse> GetForecast(WeatherForecastRequest request, ServerCallContext context)
+        public override async Task<WeatherForecastResponse> GetForecast(WeatherForecastRequest request, ServerCallContext context)
         {
             var rng = new Random();
 
@@ -26,7 +26,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
             var response = new WeatherForecastResponse();
             response.WeatherForecasts.AddRange(forecasts);
 
-            return Task.FromResult(response);
+            return await Task.FromResult(response);
         }
     }
 }

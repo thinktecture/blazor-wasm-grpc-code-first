@@ -5,6 +5,6 @@ namespace BlazorWasmGrpcCodeFirst.Shared
     [Service]
     public interface IWeatherForecastService
     {
-        IEnumerable<WeatherForecast> Get();
+        Task<IEnumerable<WeatherForecast>> GetAsync();
     }
 }

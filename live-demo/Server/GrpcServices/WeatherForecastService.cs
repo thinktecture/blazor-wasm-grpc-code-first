@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using BlazorWasmGrpcCodeFirst.Shared;
 using Google.Protobuf.WellKnownTypes;
 
@@ -15,7 +16,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
         {
         }
 
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> GetAsync()
         {
             var rng = new Random();
 
@@ -26,7 +27,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
 
-            return forecasts;
+            return await Task.FromResult(forecasts);
         }
     }
 }
