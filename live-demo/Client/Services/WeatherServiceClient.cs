@@ -15,7 +15,7 @@ namespace BlazorWasmGrpcCodeFirst.Client.Services
 
         public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastAsync()
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast");
+            return (await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast"))!;
         }
     }
 }

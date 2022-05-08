@@ -12,10 +12,6 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        public WeatherForecastService()
-        {
-        }
-
         public async Task<IEnumerable<WeatherForecast>> GetAsync()
         {
             var rng = new Random();
