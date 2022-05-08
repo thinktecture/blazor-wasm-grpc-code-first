@@ -11,6 +11,7 @@
     <None Remove="Grpc.Tools" />
     <None Remove="Google.Protobuf" />
     <None Remove="Grpc.Net.ClientFactory" />
+    <None Remove="protobuf-net.Grpc" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Grpc.Tools" Version="2.45.0">
@@ -19,10 +20,14 @@
     </PackageReference>
     <PackageReference Include="Google.Protobuf" Version="3.20.1" />
     <PackageReference Include="Grpc.Net.ClientFactory" Version="2.45.0" />
+    <PackageReference Include="protobuf-net.Grpc" Version="1.0.152" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="..\Server\GrpcServices\WeatherService.proto" GrpcServices="Client">
       <Link>Protos\WeatherService.proto</Link>
     </Protobuf>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\BlazorWasmGrpcCodeFirst.Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ControllerBase, IWeatherForecastService
     {
         private static readonly string[] Summaries = new[]
         {

@@ -1,6 +1,7 @@
 ﻿using BlazorWasmGrpcCodeFirst.Server.GrpcServices;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using ProtoBuf.Grpc.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddGrpc();
+builder.Services.AddCodeFirstGrpc();
 
 var app = builder.Build();
 
@@ -49,6 +51,7 @@ app.MapRazorPages();
 app.MapControllers();
 
 app.MapGrpcService<WeatherService>();
+app.MapGrpcService<WeatherForecastService>();
 
 app.MapFallbackToFile("index.html");
 
