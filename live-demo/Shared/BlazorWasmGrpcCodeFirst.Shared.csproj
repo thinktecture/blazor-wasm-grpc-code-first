@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="protobuf-net.BuildTools" />
+	  <None Remove="protobuf-net.Grpc" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="protobuf-net.BuildTools" Version="3.0.115">
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
+	  <PackageReference Include="protobuf-net.Grpc" Version="1.0.152" />
+	</ItemGroup>
+</Project>
