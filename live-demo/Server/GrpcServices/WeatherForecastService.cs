@@ -21,7 +21,7 @@ namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
                 Date = DateTime.UtcNow.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
-            });
+            }).ToList();
 
             return await Task.FromResult(forecasts);
         }

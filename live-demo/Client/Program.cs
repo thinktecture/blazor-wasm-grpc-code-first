@@ -21,7 +21,7 @@ builder.Services.AddScoped<GrpcChannel>(services =>
     return channel;
 });
 
-builder.Services.AddScoped<IWeatherServiceClient, WeatherServiceClient>();
+builder.Services.AddScoped<IWeatherServiceClient, WeatherServiceClientGrpc>();
 
 builder.Services.AddMudServices();
 
