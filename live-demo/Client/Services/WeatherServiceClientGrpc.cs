@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http.Json;
-using BlazorWasmGrpcCodeFirst.Shared;
+﻿using BlazorWasmGrpcCodeFirst.Shared;
 using Grpc.Net.Client;
 using ProtoBuf.Grpc.Client;
 

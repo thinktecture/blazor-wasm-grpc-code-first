@@ -1,5 +1,4 @@
-﻿using System;
-using BlazorWasmGrpcCodeFirst.Shared;
+﻿using BlazorWasmGrpcCodeFirst.Shared;
 
 namespace BlazorWasmGrpcCodeFirst.Client.Services
 {

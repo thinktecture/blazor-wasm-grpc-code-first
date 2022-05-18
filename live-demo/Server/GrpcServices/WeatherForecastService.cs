@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using BlazorWasmGrpcCodeFirst.Shared;
-using Google.Protobuf.WellKnownTypes;
+﻿using BlazorWasmGrpcCodeFirst.Shared;
 
 namespace BlazorWasmGrpcCodeFirst.Server.GrpcServices
 {

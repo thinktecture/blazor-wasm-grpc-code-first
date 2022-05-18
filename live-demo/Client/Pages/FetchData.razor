@@ -1,6 +1,6 @@
 ﻿@page "/fetchdata"
 
-@inject IWeatherServiceClient _weatherServiceClient
+@inject IWeatherServiceClient WeatherServiceClient
 
 @using BlazorWasmGrpcCodeFirst.Shared
 @using BlazorWasmGrpcCodeFirst.Client.Services
@@ -38,6 +38,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _forecasts = await _weatherServiceClient.GetWeatherForecastAsync();
+        _forecasts = await WeatherServiceClient.GetWeatherForecastAsync();
     }
 }

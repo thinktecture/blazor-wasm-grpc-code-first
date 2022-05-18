@@ -1,5 +1,4 @@
 ﻿using BlazorWasmGrpcCodeFirst.Server.GrpcServices;
-using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using ProtoBuf.Grpc.Server;
 
