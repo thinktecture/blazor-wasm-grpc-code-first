@@ -7,7 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
+		<PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.46.0" />
+		<PackageReference Include="Grpc.AspNetCore.Web" Version="2.46.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.4" />
+		<PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
+		<PackageReference Include="protobuf-net.Grpc.AspNetCore.Reflection" Version="1.0.152" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
 	</ItemGroup>
 
@@ -16,5 +21,7 @@
 		<ProjectReference Include="..\Shared\BlazorGrpc.Shared.csproj" />
 	</ItemGroup>
 
-
+	<ItemGroup>
+		<Protobuf Include="Grpc\MyWeatherForecastService.proto" GrpcServices="Server" />
+	</ItemGroup>
 </Project>

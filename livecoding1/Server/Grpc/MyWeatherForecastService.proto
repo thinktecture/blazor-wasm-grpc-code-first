@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "BlazorGrpc.Server.Proto";
+
+service MyWeatherForecastService {
+  rpc GetForecast (WeatherForecastRequest) returns (WeatherForecastResponse);
+}
+
+message WeatherForecastRequest {
+}
+
+message WeatherForecastResponse {
+  repeated WeatherForecastResult weatherForecasts = 1;
+}
+
+message WeatherForecastResult {
+  google.protobuf.Timestamp date = 1;
+  double temperatureC = 2;
+  string summary = 3;
+}

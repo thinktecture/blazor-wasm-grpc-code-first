@@ -7,7 +7,7 @@ using static BlazorWasmGrpcCodeFirst.Server.WeatherService;
 Console.WriteLine("Press a key to start...");
 Console.ReadKey();
 
-var channel = GrpcChannel.ForAddress("http://localhost:5000");
+var channel = GrpcChannel.ForAddress("http://localhost:5050");
 
 var client = new WeatherServiceClient(channel);
 var response = await client.GetForecastAsync(new WeatherForecastRequest());

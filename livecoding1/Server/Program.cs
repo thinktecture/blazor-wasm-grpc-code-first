@@ -1,6 +1,22 @@
-﻿using BlazorGrpc.Server.Services;
+﻿using System.Runtime;
+using BlazorGrpc.Server.Grpc;
+using BlazorGrpc.Server.Services;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using ProtoBuf.Grpc.Server;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#if DEBUG
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenLocalhost(5050, o => o.Protocols =
+        HttpProtocols.Http2);
+    options.ListenLocalhost(5051, o => o.Protocols =
+        HttpProtocols.Http1AndHttp2);
+    options.ListenLocalhost(5052, o => o.Protocols =
+        HttpProtocols.Http1);
+});
+#endif
 
 builder.Services.AddScoped<WeatherForecastService>();
 
@@ -9,6 +25,11 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddGrpc();
+builder.Services.AddGrpcReflection();
+builder.Services.AddCodeFirstGrpc();
+builder.Services.AddCodeFirstGrpcReflection();
 
 var app = builder.Build();
 
@@ -32,6 +53,14 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseRouting();
+
+app.UseGrpcWeb();
+
+app.MapCodeFirstGrpcReflectionService();
+app.MapGrpcReflectionService();
+
+app.MapGrpcService<MyWeatherForecastGrpcService>();
+app.MapGrpcService<WeatherForecastFacade>().EnableGrpcWeb();
 
 app.MapRazorPages();
 app.MapControllers();

@@ -6,7 +6,7 @@ namespace BlazorGrpc.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ControllerBase, IWeatherForecastFacade
     {
         private readonly WeatherForecastService _weatherService;
 
@@ -16,7 +16,7 @@ namespace BlazorGrpc.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<IEnumerable<WeatherForecast>> GetForecastsAsync()
         {
             return await _weatherService.GetWeatherForecastsAsync();
         }

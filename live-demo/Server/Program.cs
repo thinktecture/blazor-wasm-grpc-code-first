@@ -5,7 +5,7 @@ using ProtoBuf.Grpc.Server;
 var builder = WebApplication.CreateBuilder(args);
 
 #if DEBUG
-/*
+
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenLocalhost(5050, o => o.Protocols =
@@ -13,7 +13,7 @@ builder.WebHost.ConfigureKestrel(options =>
     options.ListenLocalhost(5051, o => o.Protocols =
         HttpProtocols.Http1AndHttp2);
 });
-*/
+
 #endif
 
 // Add services to the container.

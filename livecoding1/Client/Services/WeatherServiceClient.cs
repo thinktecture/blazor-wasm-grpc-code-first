@@ -13,6 +13,6 @@ public class WeatherServiceClient : IWeatherServiceClient
     }
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastsAsync()
     {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast");
+        return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("WeatherForecast") ?? Array.Empty<WeatherForecast>();
     }
 }
