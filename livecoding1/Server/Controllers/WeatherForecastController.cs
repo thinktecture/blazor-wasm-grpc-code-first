@@ -16,7 +16,7 @@ namespace BlazorGrpc.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<IEnumerable<WeatherForecast>> GetForecastsAsync()
         {
             return await _weatherService.GetWeatherForecastsAsync();
         }

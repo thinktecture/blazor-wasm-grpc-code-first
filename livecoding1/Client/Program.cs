@@ -10,7 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-builder.Services.AddScoped<IWeatherServiceClient, WeatherServiceClient>();
+builder.Services.AddScoped<IWeatherServiceClient, WeatherServiceClientHttp>();
 
 builder.Services.AddMudServices();
 
