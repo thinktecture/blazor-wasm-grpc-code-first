@@ -9,6 +9,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.9" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
+		<PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.49.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -17,4 +19,13 @@
 	</ItemGroup>
 
 
+	<ItemGroup>
+	  <None Remove="Grpc.AspNetCore" />
+	  <None Remove="Grpc.AspNetCore.Server.Reflection" />
+	  <None Remove="MyWeatherForecastService.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="MyWeatherForecastService.proto" GrpcServices="Server" />
+	</ItemGroup>
 </Project>
